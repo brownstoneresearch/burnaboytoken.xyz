@@ -1,159 +1,24 @@
-<!-- =========================================================
-  UPGRADED: $BURNA Landing (index.html)
-  - More mature / professional tone
-  - Crypto-native sections: utilities, security, transparency, risk notice
-  - Better accessibility, SEO, OG/Twitter cards, structured layout
-  - “Facts-first” copy (less hype), clearer token/contract handling
-  - Safer interactions (toast instead of alert), reduced-motion support
-========================================================== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>$BURNA — Culture × Web3 Utility</title>
-  <meta name="description" content="$BURNA is a community-led ERC-20 token designed for fan engagement, token-gated access, and on-chain incentives. Contract, links, and roadmap in one place." />
+  <meta name="description" content="$BURNA is a community-led ERC-20 token designed for fan engagement, token-gated access, and on-chain incentives." />
   <meta name="theme-color" content="#070A12" />
   <meta name="color-scheme" content="dark" />
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="$BURNA — Culture × Web3 Utility" />
-  <meta property="og:description" content="Community-led ERC-20 token for fan engagement, token-gated access, and on-chain incentives." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
+  <link rel="apple-touch-icon" href="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Icons -->
-  <link rel="icon" href="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
-  <link rel="apple-touch-icon" href="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
+  <link rel="stylesheet" href="./assets/css/theme.css" />
 
   <style>
-    :root{
-      --bg:#05060a;
-      --bg2:#070A12;
-      --panel:rgba(255,255,255,.045);
-      --panel2:rgba(255,255,255,.07);
-      --border:rgba(255,255,255,.12);
-      --text:#EAF2FF;
-      --muted:rgba(234,242,255,.72);
-      --faint:rgba(234,242,255,.55);
-
-      --neon:#37f6ff;
-      --amber:#ffc371;
-      --rose:#ff5f6d;
-
-      --shadow: 0 18px 55px rgba(0,0,0,.55);
-      --glow: 0 10px 34px rgba(55,246,255,.18);
-      --ring: 0 0 0 3px rgba(55,246,255,.22);
-
-      --r-xl:22px;
-      --r-lg:18px;
-      --r-md:14px;
-      --r-sm:12px;
-
-      --max:1140px;
-      --nav-h:74px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(1200px 700px at 12% -10%, rgba(55,246,255,.10), transparent 60%),
-                  radial-gradient(900px 600px at 110% 0, rgba(255,95,109,.09), transparent 55%),
-                  linear-gradient(180deg, var(--bg2), var(--bg));
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      overflow-x:hidden;
-    }
-
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max);margin:0 auto;padding:0 22px}
-    .muted{color:var(--muted)}
-    .faint{color:var(--faint)}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-
-    /* Skip link for accessibility */
-    .skip{
-      position:absolute; left:-999px; top:8px;
-      background:#0b1220; border:1px solid var(--border);
-      padding:10px 12px; border-radius:10px; z-index:1000;
-    }
-    .skip:focus{left:12px; box-shadow:var(--ring)}
-
-    /* Top nav */
-    .site-nav{
-      position:fixed; inset:0 0 auto 0; height:var(--nav-h); z-index:80;
-      display:flex; align-items:center;
-      background:linear-gradient(180deg, rgba(3,4,10,.70), rgba(3,4,10,.22));
-      border-bottom:1px solid rgba(255,255,255,.06);
-      -webkit-backdrop-filter:saturate(120%) blur(12px);
-      backdrop-filter:saturate(120%) blur(12px);
-    }
-    .nav-row{display:flex;align-items:center;gap:12px}
-    .nav-left{display:flex;align-items:center;gap:12px;margin-right:auto;min-width:0}
-    .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-wrap:wrap}
-
-    .brand{display:flex;gap:12px;align-items:center;min-width:0}
-    .brand img{
-      width:46px;height:46px;border-radius:14px;object-fit:cover;
-      border:1px solid var(--border);
-      box-shadow:0 10px 30px rgba(255,95,109,.10);
-    }
-    .brand .name{display:flex;flex-direction:column;min-width:0}
-    .brand h1{
-      margin:0;
-      font:800 16px/1.05 Orbitron,monospace;
-      letter-spacing:.45px;
-      white-space:nowrap;
-    }
-    .brand .sub{font-size:12px;color:var(--muted);margin-top:4px;white-space:nowrap}
-
-    /* Buttons */
-    .btn{
-      --bg:linear-gradient(90deg,var(--rose),var(--amber));
-      --fg:#07131A;
-      display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
-      padding:10px 14px; min-height:44px;
-      border-radius:12px;
-      border:1px solid transparent;
-      background:var(--bg);
-      color:var(--fg);
-      font:800 14px Orbitron,monospace;
-      box-shadow:0 10px 30px rgba(255,95,109,.12);
-      transition:transform .16s, filter .2s, box-shadow .2s;
-      user-select:none;
-    }
-    .btn:hover{transform:translateY(-2px);filter:saturate(112%)}
-    .btn:focus-visible{outline:none;box-shadow:0 10px 30px rgba(255,95,109,.12), var(--ring)}
-
-    .btn--neon{
-      --bg:linear-gradient(90deg,var(--neon),#7cf0ff);
-      box-shadow:var(--glow);
-    }
-    .btn--ghost{
-      background:transparent;
-      border:1px solid var(--border);
-      color:var(--text);
-      font:600 14px Inter,system-ui;
-      box-shadow:none;
-    }
-    .btn--ghost:hover{border-color:rgba(255,255,255,.18);box-shadow:0 10px 26px rgba(0,0,0,.25)}
-    .btn.big{padding:14px 18px;border-radius:14px;font-size:16px}
-    .icon{width:20px;height:20px}
-
-    @media (max-width:560px){
-      .nav-right > *{flex:1 1 100%}
-    }
-
-    /* Hero */
+    /* Page-specific styles only */
     header.hero{
       position:relative;
       min-height:100svh;
@@ -167,9 +32,7 @@
       filter:blur(7px) saturate(115%) brightness(.58);
       transform:scale(1.03);
     }
-    @media (prefers-reduced-motion:reduce){
-      .hero-bg video{display:none}
-    }
+    @media (prefers-reduced-motion:reduce){ .hero-bg video{display:none} }
 
     .hero-card{
       position:relative;z-index:1;
@@ -183,7 +46,6 @@
       box-shadow:var(--shadow);
       padding:18px;
     }
-
     .hero-grid{
       display:grid;
       grid-template-columns:1.35fr .65fr;
@@ -200,92 +62,41 @@
       font:800 clamp(28px,4.2vw,48px)/1.05 Orbitron,monospace;
       letter-spacing:.35px;
     }
-    .h-lead{
-      margin:10px 0 14px;
-      color:var(--muted);
-      max-width:62ch;
-    }
+    .h-lead{margin:10px 0 14px;color:var(--muted);max-width:62ch}
 
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
     .chip{
       display:inline-flex;align-items:center;gap:8px;
       background:rgba(0,0,0,.22);
       border:1px solid var(--border);
-      padding:8px 10px;
-      border-radius:999px;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:700;
+      padding:8px 10px;border-radius:999px;
+      color:var(--muted);font-size:12px;font-weight:800;
     }
     .dot{width:7px;height:7px;border-radius:999px;background:var(--neon);box-shadow:0 0 10px rgba(55,246,255,.55)}
 
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 8px}
     @media (max-width:560px){.cta > *{flex:1 1 100%}}
 
-    /* Contract row */
     .contract{
       margin-top:14px;
       display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-      padding:12px 12px;
-      background:rgba(0,0,0,.28);
-      border:1px solid var(--border);
-      border-radius:14px;
+      padding:12px;background:rgba(0,0,0,.28);
+      border:1px solid var(--border);border-radius:14px;
     }
     .contract .label{
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
-      color:rgba(234,242,255,.86);
+      font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+      font-size:11px;color:rgba(234,242,255,.86);
     }
-    .contract .addr{
-      word-break:break-all;
-      font-size:13px;
-      color:rgba(234,242,255,.86);
-      flex:1 1 320px;
-    }
+    .contract .addr{word-break:break-all;font-size:13px;color:rgba(234,242,255,.86);flex:1 1 320px}
     .contract .actions{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
 
-    /* Right visual */
     .visual{
-      border:1px solid var(--border);
-      border-radius:16px;
-      overflow:hidden;
+      border:1px solid var(--border);border-radius:16px;overflow:hidden;
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
     }
-    .visual img,.visual video{width:100%;height:270px;object-fit:cover;display:block}
+    .visual img{width:100%;height:270px;object-fit:cover;display:block}
     .visual .cap{padding:10px 12px;color:var(--muted);font-size:13px;line-height:1.45}
 
-    /* Sections */
-    section.block{
-      padding:56px 0;
-      border-top:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 45%);
-    }
-    .section-title{
-      margin:0 0 12px;
-      font:800 26px/1.2 Orbitron,monospace;
-      letter-spacing:.25px;
-      background:linear-gradient(90deg, #EAF2FF, #9bdff2);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media (max-width:980px){.grid3{grid-template-columns:1fr}}
-    .card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 14px 34px rgba(0,0,0,.25);
-      transition:transform .16s, border-color .2s;
-    }
-    .card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.16)}
-    .card h3{margin:0 0 8px;font:800 14px Orbitron,monospace;letter-spacing:.22px}
-    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-    .card ul{margin:10px 0 0 18px;color:var(--muted);font-size:14px}
-    .card li{margin:6px 0}
-
-    /* Ticker */
     .ticker{
       border-top:1px solid rgba(255,255,255,.10);
       border-bottom:1px solid rgba(255,255,255,.10);
@@ -293,23 +104,15 @@
       overflow:hidden;
     }
     .track{
-      display:inline-flex;gap:20px;
-      padding:11px 0;
-      white-space:nowrap;
+      display:inline-flex;gap:20px;padding:11px 0;white-space:nowrap;
       animation:scroll 24s linear infinite;
     }
     @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     @media (prefers-reduced-motion:reduce){.track{animation:none}}
-
     .pill{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(0,0,0,.18);
-      font-weight:800;
-      font-size:12px;
-      color:rgba(234,242,255,.86);
+      display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;
+      border:1px solid var(--border);background:rgba(0,0,0,.18);
+      font-weight:900;font-size:12px;color:rgba(234,242,255,.86);
     }
     .pill.live{border-color:rgba(55,246,255,.30);background:rgba(55,246,255,.10);box-shadow:0 0 0 1px rgba(55,246,255,.12) inset}
 
@@ -317,10 +120,8 @@
     .tl{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
     @media (max-width:900px){.tl{grid-template-columns:1fr}}
     .phase{
-      position:relative;
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:16px;
+      position:relative;background:var(--panel);
+      border:1px solid var(--border);border-radius:16px;
       padding:14px 14px 14px 54px;
       transition:transform .16s, border-color .2s, box-shadow .2s;
     }
@@ -330,65 +131,28 @@
       background:var(--neon);box-shadow:0 0 12px rgba(55,246,255,.7);
     }
     .phase.is-active{border-color:rgba(55,246,255,.28);box-shadow:0 0 0 1px rgba(55,246,255,.16) inset}
-    .p-head{margin:0 0 6px;font:800 14px Orbitron,monospace}
+    .p-head{margin:0 0 6px;font:900 14px Orbitron,monospace}
     .p-body{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
     .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .progress{margin-top:14px;height:7px;border-radius:999px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
     .bar{position:absolute;inset:0 auto 0 0;width:25%;background:linear-gradient(90deg,var(--neon),#7cf0ff);box-shadow:0 0 10px rgba(55,246,255,.32);transition:width .45s}
 
-    /* Footer */
     footer.footer{
-      padding:28px 0;
-      border-top:1px solid rgba(255,255,255,.10);
+      padding:28px 0;border-top:1px solid rgba(255,255,255,.10);
       background:linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.62));
     }
     .foot{
-      display:grid;
-      grid-template-columns:1.2fr .8fr .8fr;
-      gap:18px;
+      display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px;
     }
     @media (max-width:900px){.foot{grid-template-columns:1fr}}
     .foot-head{
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:rgba(234,242,255,.86);
-      margin:0 0 10px;
+      font-weight:900;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+      color:rgba(234,242,255,.86);margin:0 0 10px;
     }
-    .icon-grid{display:grid;grid-template-columns:repeat(5,46px);gap:10px}
-    @media (max-width:520px){.icon-grid{grid-template-columns:repeat(4,46px)}}
-    .icon-btn{
-      width:46px;height:46px;border-radius:999px;
-      display:grid;place-items:center;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      transition:transform .15s, border-color .2s, box-shadow .2s;
-    }
-    .icon-btn:hover{transform:translateY(-2px);border-color:rgba(155,234,255,.55);box-shadow:0 12px 26px rgba(0,0,0,.28)}
-    .icon-btn svg{width:22px;height:22px}
-
     .legal{
-      margin-top:16px;
-      display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;
-      color:rgba(234,242,255,.60);
-      font-size:12px;
+      margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;
+      color:rgba(234,242,255,.60);font-size:12px;
     }
-
-    /* Toast */
-    .toast{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background:rgba(6,10,18,.92);
-      border:1px solid rgba(255,255,255,.12);
-      padding:10px 12px;
-      border-radius:14px;
-      color:rgba(234,242,255,.92);
-      box-shadow:0 16px 40px rgba(0,0,0,.45);
-      z-index:120;
-      display:none;
-      max-width:min(520px, calc(100% - 24px));
-    }
-    .toast strong{color:#fff}
   </style>
 </head>
 
@@ -409,10 +173,8 @@
 
     <div class="nav-right">
       <a class="btn btn--ghost" href="./whitepaper/" title="Read the Whitepaper">Whitepaper</a>
-      <a class="btn btn--neon" id="buyNow"
-         href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0"
-         target="_blank" rel="noopener noreferrer">
-        Trade on DEXTools
+      <a class="btn btn--neon" id="buyNow" href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0">
+        Trade $BURNA
         <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M5 12h14M12 5l7 7-7 7" stroke="#05121a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -423,8 +185,8 @@
 
 <header class="hero" id="content">
   <div class="hero-bg" aria-hidden="true">
-    <video autoplay muted loop playsinline poster="Screenshot_3.png">
-      <source src="burna.mp4" type="video/mp4" />
+    <video autoplay muted loop playsinline poster="assets/media/hero-poster.jpg">
+      <source src="assets/media/burna.mp4" type="video/mp4" />
       <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=70" alt="" />
     </video>
   </div>
@@ -439,16 +201,14 @@
         </p>
 
         <div class="cta">
-          <a class="btn btn--neon big"
-             href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0"
-             target="_blank" rel="noopener noreferrer">
+          <a class="btn btn--neon big" href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0">
             Trade $BURNA
             <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7" stroke="#05121a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="btn" href="./whitepaper/#tokenomics" title="Go to tokenomics in whitepaper">Tokenomics</a>
-          <a class="btn btn--ghost" href="#roadmap" title="View roadmap">Roadmap</a>
+          <a class="btn" href="./whitepaper/#tokenomics">Tokenomics</a>
+          <a class="btn btn--ghost" href="#roadmap">Roadmap</a>
         </div>
 
         <div class="chips" aria-label="Key facts">
@@ -461,10 +221,10 @@
 
         <div class="contract" aria-label="Contract details">
           <div class="label">Contract</div>
-          <div class="addr mono" id="contractText">0x00b8a9bb1dcab2cf2375284d70b39e6ef7d86aae</div>
+          <div class="addr mono" id="contractText"></div>
           <div class="actions">
             <button class="btn btn--ghost" type="button" id="copyBtn">Copy</button>
-            <a class="btn btn--ghost" id="explorerLink" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">Explorer</a>
+            <a class="btn btn--ghost" id="explorerLink" href="#" aria-disabled="true">Explorer</a>
           </div>
         </div>
 
@@ -475,9 +235,7 @@
 
       <aside class="visual" aria-label="Visual">
         <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=70" alt="Concert lighting and stage setup" />
-        <div class="cap">
-          Utility focus: token-gated access, community programs, and on-chain incentives — built to be verifiable.
-        </div>
+        <div class="cap">Utility focus: access, community programs, and verifiable on-chain incentives.</div>
       </aside>
     </div>
   </div>
@@ -504,54 +262,11 @@
     <h3 class="section-title">Utility & ecosystem</h3>
     <p class="muted" style="margin:0 0 16px; max-width:80ch">
       $BURNA is structured around practical on-chain mechanics: access, incentives, and transparent community programs.
-      The exact scope of utilities is documented in the whitepaper and updated through official channels.
     </p>
-
     <div class="grid3">
-      <div class="card">
-        <h3>Token-gated access</h3>
-        <p>Holders may qualify for gated experiences such as releases, drops, or community perks, subject to published rules.</p>
-      </div>
-      <div class="card">
-        <h3>On-chain incentives</h3>
-        <p>Programs can include engagement rewards and structured distributions that can be verified via the contract and wallet activity.</p>
-      </div>
-      <div class="card">
-        <h3>Community governance (roadmapped)</h3>
-        <p>Governance and treasury processes can be introduced progressively, with transparent criteria and public reporting.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="security">
-  <div class="container">
-    <h3 class="section-title">Security & transparency</h3>
-    <div class="grid3">
-      <div class="card">
-        <h3>Contract verification</h3>
-        <ul>
-          <li>Contract address displayed on the site</li>
-          <li>Explorer link auto-syncs to the address shown</li>
-          <li>Encourage user-side verification before trading</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Liquidity posture</h3>
-        <ul>
-          <li>Liquidity status referenced as “locked”</li>
-          <li>Lock proof should be published/linked (when available)</li>
-          <li>Prefer public, timestamped evidence</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Risk notice</h3>
-        <ul>
-          <li>Tokens are volatile; losses are possible</li>
-          <li>Smart contract and regulatory risks exist</li>
-          <li>Users are responsible for compliance</li>
-        </ul>
-      </div>
+      <div class="card"><h3>Token-gated access</h3><p>Eligibility-based experiences, published rules, and verifiable participation.</p></div>
+      <div class="card"><h3>On-chain incentives</h3><p>Programs designed to be auditable and communicated from official sources.</p></div>
+      <div class="card"><h3>Governance path</h3><p>Roadmapped governance with documented procedures and execution controls.</p></div>
     </div>
   </div>
 </section>
@@ -563,29 +278,23 @@
     <div class="tl">
       <div class="phase is-active" data-start="2025-11-01" data-end="2025-12-31">
         <h4 class="p-head">Phase 1 — Launch & foundation</h4>
-        <p class="p-body">Token deployment, initial liquidity, community onboarding, and published documentation (website + whitepaper).</p>
+        <p class="p-body">Deployment, liquidity, onboarding, and published documentation.</p>
         <div class="meta">
           <span class="chip" id="airdropChip">Airdrop: Starts <strong>Nov 14, 2025</strong> <span id="airdropCountdown"></span></span>
           <span class="chip">Status: Live</span>
         </div>
       </div>
-
       <div class="phase" data-start="2026-01-01" data-end="2026-03-31">
         <h4 class="p-head">Phase 2 — Ecosystem rollout</h4>
-        <p class="p-body">Community programs, partner activations, and token-gated experiments. Publish metrics and reporting standards.</p>
-        <div class="meta"><span class="chip">Programs</span><span class="chip">Partner activations</span></div>
+        <p class="p-body">Programs, partner activations, and reporting standards.</p>
       </div>
-
       <div class="phase" data-start="2026-04-01" data-end="2026-06-30">
         <h4 class="p-head">Phase 3 — Experiences</h4>
-        <p class="p-body">Event-linked utilities and community moments, with rules published in advance and verifiable fulfillment.</p>
-        <div class="meta"><span class="chip">Events</span><span class="chip">Perks</span></div>
+        <p class="p-body">Event-linked utilities and verifiable fulfillment processes.</p>
       </div>
-
       <div class="phase" data-start="2026-07-01" data-end="2026-09-30">
         <h4 class="p-head">Phase 4 — Governance</h4>
-        <p class="p-body">Introduce governance tooling and transparent funding frameworks (e.g., proposals + multisig execution).</p>
-        <div class="meta"><span class="chip">DAO</span><span class="chip">Treasury</span></div>
+        <p class="p-body">Governance tooling and transparent funding frameworks.</p>
       </div>
     </div>
 
@@ -595,59 +304,7 @@
   </div>
 </section>
 
-<section class="block" id="links">
-  <div class="container">
-    <h3 class="section-title">Official links</h3>
-    <p class="muted" style="margin:0 0 16px">Use these verified destinations for contract, trading, and community channels.</p>
-
-    <div class="grid3">
-      <div class="card">
-        <h3>Explore</h3>
-        <div class="icon-grid" style="grid-template-columns:repeat(4,46px)">
-          <a class="icon-btn" href="https://etherscan.io/address/0x00b8a9bb1dcab2cf2375284d70b39e6ef7d86aae" target="_blank" rel="noopener" aria-label="Etherscan Address" title="Etherscan Address">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12a9 9 0 1 1 18 0v6a2 2 0 0 1-2 2h-1v-8a1 1 0 0 0-2 0v8h-2v-6a1 1 0 0 0-2 0v6H8v-4a1 1 0 0 0-2 0v4H5a2 2 0 0 1-2-2v-6Z"/></svg>
-          </a>
-          <a class="icon-btn" id="quickToken" href="#" target="_blank" rel="noopener" aria-label="Etherscan Token" title="Etherscan Token">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 1 0 20h-2v-6h2a4 4 0 0 0 0-8h-2V2h2Z"/></svg>
-          </a>
-          <a class="icon-btn" href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0" target="_blank" rel="noopener" aria-label="DEXTools Pair" title="DEXTools Pair">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 17h4v2H4v-2Zm0-6h8v2H4v-2Zm0-6h16v2H4V5Zm10 12h6v2h-6v-2Zm-2-6h8v2h-8v-2Z"/></svg>
-          </a>
-          <a class="icon-btn" href="./whitepaper/" aria-label="Whitepaper" title="Whitepaper">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8h-6V2Z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Community</h3>
-        <div class="icon-grid" style="grid-template-columns:repeat(4,46px)">
-          <a class="icon-btn" href="https://x.com/burnadapp?s=21" target="_blank" rel="noopener" aria-label="X / Twitter" title="X / Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 3H22l-6.9 7.9L22.6 21h-6.3l-4.1-5.4L7.2 21H2l7.4-8.5L2 3h6.4l3.7 4.9L18.9 3Zm-2.2 16h1.8L8.5 5H6.7l10 14Z"/></svg>
-          </a>
-          <a class="icon-btn" href="https://t.me/burnatokencommunity" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 13.51 8.7 18.6c.5 0 .7-.2 .96-.44l2.31-2.2 4.79 3.51c.88 .49 1.5 .23 1.74 -.81l3.16 -14.83c.28 -1.3 -.47 -1.81 -1.32 -1.49L2.1 9.36c-1.28 .5 -1.26 1.22 -.22 1.54l5.53 1.73L18.9 6.2c.6 -.37 1.16 -.17 .7 .2Z"/></svg>
-          </a>
-          <a class="icon-btn" href="https://www.youtube.com/@burnadapp" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
-          </a>
-          <a class="icon-btn" href="/cdn-cgi/l/email-protection#1b686e6b6b74696f5b796e69757a7974626f74707e7535636261" aria-label="Email" title="Email">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Operational notes</h3>
-        <p>
-          Links on this site should match the displayed contract. If a link looks unfamiliar or the contract differs from the official one shown here, treat it as suspicious.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer" aria-label="Footer">
+<footer class="footer">
   <div class="container foot">
     <div>
       <div class="brand" style="margin-bottom:10px">
@@ -658,21 +315,21 @@
         </div>
       </div>
       <p class="muted" style="margin:0;max-width:70ch">
-        This website is informational. Digital assets involve risk. Always do your own research and verify the contract address independently.
+        Informational only. Digital assets involve risk. Verify the contract address independently.
       </p>
     </div>
 
     <div>
       <div class="foot-head">Token</div>
       <div class="icon-grid">
-        <a id="footerContract" class="icon-btn" href="#" target="_blank" rel="noopener" aria-label="Token on Etherscan" title="Token on Etherscan">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 1 0 20h-2v-6h2a4 4 0 0 0 0-8h-2V2h2Z"/></svg>
+        <a id="footerContract" class="icon-btn" href="#" aria-label="Token on Etherscan" title="Token on Etherscan">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 1 0 20h-2v-6h2a4 4 0 0 0 0-8h-2V2h2Z"/></svg>
         </a>
-        <a class="icon-btn" href="https://etherscan.io/address/0x00b8a9bb1dcab2cf2375284d70b39e6ef7d86aae" target="_blank" rel="noopener" aria-label="Contract address on Etherscan" title="Contract address on Etherscan">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 12a8 8 0 1 1 16 0v7H4v-7Z"/></svg>
+        <a class="icon-btn" href="https://etherscan.io/address/0x00b8a9bb1dcab2cf2375284d70b39e6ef7d86aae" target="_blank" rel="noopener" aria-label="Contract on Etherscan" title="Contract on Etherscan">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12a8 8 0 1 1 16 0v7H4v-7Z"/></svg>
         </a>
-        <a class="icon-btn" href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0" target="_blank" rel="noopener" aria-label="DEXTools pair" title="DEXTools pair">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 17h4v2H4v-2Zm0-6h8v2H4v-2Zm0-6h16v2H4V5Zm10 12h6v2h-6v-2Zm-2-6h8v2h-8v-2Z"/></svg>
+        <a class="icon-btn" href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0" target="_blank" rel="noopener" aria-label="DEXTools" title="DEXTools">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 17h4v2H4v-2Zm0-6h8v2H4v-2Zm0-6h16v2H4V5Zm10 12h6v2h-6v-2Zm-2-6h8v2h-8v-2Z"/></svg>
         </a>
       </div>
     </div>
@@ -680,17 +337,17 @@
     <div>
       <div class="foot-head">Connect</div>
       <div class="icon-grid">
-        <a class="icon-btn" href="https://x.com/burnadapp?s=21" target="_blank" rel="noopener" aria-label="X / Twitter" title="X / Twitter">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 3H22l-6.9 7.9L22.6 21h-6.3l-4.1-5.4L7.2 21H2l7.4-8.5L2 3h6.4l3.7 4.9L18.9 3Zm-2.2 16h1.8L8.5 5H6.7l10 14Z"/></svg>
+        <a class="icon-btn" href="https://x.com/burnadapp?s=21" target="_blank" rel="noopener" aria-label="X" title="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-6.9 7.9L22.6 21h-6.3l-4.1-5.4L7.2 21H2l7.4-8.5L2 3h6.4l3.7 4.9L18.9 3Zm-2.2 16h1.8L8.5 5H6.7l10 14Z"/></svg>
         </a>
         <a class="icon-btn" href="https://t.me/burnatokencommunity" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 13.51 8.7 18.6c.5 0 .7-.2 .96-.44l2.31-2.2 4.79 3.51c.88 .49 1.5 .23 1.74 -.81l3.16 -14.83c.28 -1.3 -.47 -1.81 -1.32 -1.49L2.1 9.36c-1.28 .5 -1.26 1.22 -.22 1.54l5.53 1.73L18.9 6.2c.6 -.37 1.16 -.17 .7 .2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 13.51 8.7 18.6c.5 0 .7-.2 .96-.44l2.31-2.2 4.79 3.51c.88 .49 1.5 .23 1.74 -.81l3.16 -14.83c.28 -1.3 -.47 -1.81 -1.32 -1.49L2.1 9.36c-1.28 .5 -1.26 1.22 -.22 1.54l5.53 1.73L18.9 6.2c.6 -.37 1.16 -.17 .7 .2Z"/></svg>
         </a>
         <a class="icon-btn" href="https://www.youtube.com/@burnadapp" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
         </a>
         <a class="icon-btn" href="/cdn-cgi/l/email-protection#463533363629343206243334282724293f32292d2328683e3f3c" aria-label="Email" title="Email">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"/></svg>
         </a>
       </div>
     </div>
@@ -704,168 +361,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- Scripts: safer copy toast, explorer sync, roadmap progress, airdrop countdown -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script>
-(() => {
-  const ETH_ADDR_RE = /^0x[a-fA-F0-9]{40}$/;
-  const DEXTOOLS_URL = "https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0";
-
-  const $ = (id) => document.getElementById(id);
-
-  const contractEl  = $("contractText");
-  const copyBtn     = $("copyBtn");
-  const explorerEl  = $("explorerLink");
-  const footerToken = $("footerContract");
-  const quickToken  = $("quickToken");
-  const yearEl      = $("year");
-  const contractFt  = $("contractFooter");
-  const toastEl     = $("toast");
-
-  yearEl.textContent = new Date().getFullYear();
-
-  function showToast(html){
-    if (!toastEl) return;
-    toastEl.innerHTML = html;
-    toastEl.style.display = "block";
-    clearTimeout(showToast._t);
-    showToast._t = setTimeout(() => { toastEl.style.display = "none"; }, 2800);
-  }
-
-  function currentAddress(){
-    return (contractEl?.textContent || "").trim();
-  }
-
-  function setTokenLink(a, valid, addr){
-    if (!a) return;
-    if (valid){
-      a.href = `https://etherscan.io/token/${addr}`;
-      a.setAttribute("aria-disabled","false");
-      a.title = "Open on Etherscan (Token)";
-    } else {
-      a.href = "#";
-      a.setAttribute("aria-disabled","true");
-      a.title = "Invalid contract address";
-    }
-  }
-
-  function syncLinks(){
-    const addr = currentAddress();
-    const valid = ETH_ADDR_RE.test(addr);
-    setTokenLink(explorerEl, valid, addr);
-    setTokenLink(footerToken, valid, addr);
-    setTokenLink(quickToken, valid, addr);
-    if (contractFt) contractFt.textContent = addr || "—";
-  }
-
-  async function copyContract(){
-    const addr = currentAddress();
-    if (!ETH_ADDR_RE.test(addr)){
-      showToast("<strong>Invalid address:</strong> please update the contract text.");
-      return;
-    }
-    try{
-      await navigator.clipboard.writeText(addr);
-      showToast("Copied: <span class='mono' style='opacity:.9'>" + addr + "</span>");
-    }catch{
-      // fallback
-      const ta = document.createElement("textarea");
-      ta.value = addr; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.top="-9999px";
-      document.body.appendChild(ta); ta.select();
-      try{
-        document.execCommand("copy");
-        showToast("Copied: <span class='mono' style='opacity:.9'>" + addr + "</span>");
-      }catch{
-        showToast("<strong>Copy failed.</strong> Select and copy manually.");
-      }finally{
-        document.body.removeChild(ta);
-      }
-    }
-  }
-
-  // Ensure DEXTools links open safely
-  document.querySelectorAll(`#buyNow, a[href="${DEXTOOLS_URL}"]`).forEach(a => {
-    a.setAttribute("target","_blank");
-    a.setAttribute("rel","noopener noreferrer");
-  });
-
-  copyBtn?.addEventListener("click", copyContract);
-  syncLinks();
-
-  if (window.MutationObserver && contractEl){
-    new MutationObserver(syncLinks).observe(contractEl, {characterData:true, childList:true, subtree:true});
-  }
-})();
-
-// Roadmap active + progress
-(() => {
-  const nodes = [...document.querySelectorAll(".tl [data-start]")];
-  if (!nodes.length) return;
-
-  const toDate = v => v ? new Date(v + "T00:00:00") : null;
-  const now = new Date();
-
-  const items = nodes.map(el => ({ el, start: toDate(el.dataset.start), end: toDate(el.dataset.end) }))
-    .sort((a,b) => (a.start?.getTime()||0) - (b.start?.getTime()||0));
-
-  // infer missing end dates if needed
-  for (let i=0;i<items.length;i++){
-    if (!items[i].end && items[i+1]?.start){
-      const d = new Date(items[i+1].start);
-      d.setDate(d.getDate()-1);
-      items[i].end = d;
-    }
-  }
-
-  let active = items.find(it => it.start && it.end && now >= it.start && now <= it.end);
-  if (!active){
-    const past = items.filter(it => it.start && now >= it.start);
-    active = past.length ? past[past.length-1] : items[0];
-  }
-
-  items.forEach(it => it.el.classList.remove("is-active"));
-  (active?.el || items[0].el).classList.add("is-active");
-
-  const pct = ((items.indexOf(active) + 1) / items.length) * 100;
-  const bar = document.getElementById("roadmapProgress");
-  if (bar) bar.style.width = Math.max(0, Math.min(100, pct)) + "%";
-})();
-
-// Airdrop countdown + ticker flip (Nov 14, 2025 local time)
-(() => {
-  const chip = document.getElementById("airdropChip");
-  const cd   = document.getElementById("airdropCountdown");
-  const tk   = document.getElementById("airdropTicker");
-  if (!chip) return;
-
-  const target = new Date("2025-11-14T00:00:00");
-  const z = n => String(n).padStart(2,"0");
-
-  function setLive(){
-    chip.innerHTML = "Airdrop: <strong>Live</strong>";
-    chip.classList.add("live");
-    if (tk){
-      tk.classList.add("live");
-      tk.innerHTML = "<span class='dot'></span> Airdrop: Live";
-    }
-  }
-
-  (function tick(){
-    const diff = target - new Date();
-    if (diff <= 0){ setLive(); return; }
-
-    const dd = Math.floor(diff / 86400000);
-    const hh = Math.floor((diff % 86400000) / 3600000);
-    const mm = Math.floor((diff % 3600000) / 60000);
-
-    if (cd) cd.textContent = `• ${dd}d ${z(hh)}h ${z(mm)}m`;
-    if (tk) tk.innerHTML = `<span class="dot"></span> Airdrop: Starts Nov 14, 2025 • ${dd}d ${z(hh)}h ${z(mm)}m`;
-
-    setTimeout(tick, 15000);
-  })();
-})();
-</script>
-
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"84ad82a6ab23429c9d5c2f08d86cffeb","r":1}' crossorigin="anonymous"></script>
+<script src="./assets/js/site.js" defer></script>
 </body>
 </html>
