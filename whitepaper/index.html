@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>$BURNA Token Whitepaper</title>
+<meta name="description" content="$BURNA Token — vision, problem, solution, tokenomics, roadmap, governance, and legal disclaimer." />
+<meta name="theme-color" content="#0b0f1a" />
+
+<!-- Brand favicon / icon -->
+<link rel="icon" href="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
+<link rel="apple-touch-icon" href="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    /* Brand system (synced with token site) */
+    --bg:#05060a; --panel:rgba(255,255,255,.04); --panel-2:rgba(255,255,255,.06);
+    --border:rgba(255,255,255,.12); --text:#e6eef8; --muted:#b8c6e0;
+    --neon:#37f6ff; --amber:#ffc371; --accent1:#ff5f6d;
+    --ring:0 0 0 3px rgba(55,246,255,.25);
+    --max:1140px; --nav-h:72px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);
+            font:16px/1.6 Inter,system-ui,Segoe UI,Arial,sans-serif;
+            -webkit-font-smoothing:antialiased}
+  a{color:#7cf0ff;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+  /* ===== Top NAV (brand left, links right) ===== */
+  .site-nav{
+    position:fixed; inset:0 0 auto 0; height:var(--nav-h); z-index:50;
+    display:flex; align-items:center; width:100%;
+    background:linear-gradient(180deg, rgba(3,4,10,.55), rgba(3,4,10,.12));
+    border-bottom:1px solid rgba(255,255,255,.06);
+    -webkit-backdrop-filter:saturate(120%) blur(10px);
+    backdrop-filter:saturate(120%) blur(10px);
+  }
+  .nav-row{display:flex; align-items:center; width:100%; gap:12px}
+  .nav-left{display:flex; align-items:center; gap:12px; margin-right:auto}
+  .nav-right{display:flex; align-items:center; gap:10px; margin-left:auto; flex-wrap:wrap}
+  .brand{display:flex; gap:12px; align-items:center}
+  .brand img{width:48px;height:48px;border-radius:12px;object-fit:cover;border:1px solid var(--border)}
+  .brand h1{margin:0;font:800 18px Orbitron,monospace;letter-spacing:.4px;white-space:nowrap}
+
+  .btn{
+    --bg:linear-gradient(90deg,var(--neon),#7cf0ff); --fg:#04121a;
+    display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+    padding:10px 14px; min-height:44px; border-radius:10px; border:1px solid transparent;
+    background:var(--bg); color:var(--fg); font:800 14px Orbitron,monospace;
+    box-shadow:0 8px 28px rgba(55,246,255,.22); transition:transform .18s,filter .25s,box-shadow .25s;
+  }
+  .btn:hover{transform:translateY(-2px);filter:saturate(112%)}
+  .btn:focus-visible{outline:none;box-shadow:0 8px 28px rgba(55,246,255,.22),var(--ring)}
+  .btn--ghost{background:transparent;border:1px solid var(--border);color:var(--text);font:600 14px Inter,Arial}
+  .btn--amber{--bg:linear-gradient(90deg,var(--amber),#ffd296);color:#101820}
+  .btn small{font:600 12px/1 Inter,Arial}
+
+  .link-pill{
+    display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;
+    border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--muted);
+    text-decoration:none;font-weight:700;font-size:12px
+  }
+  .link-pill svg{width:18px;height:18px}
+  .active{pointer-events:none;border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#eaf6ff}
+
+  /* ===== Hero header ===== */
+  .hero{
+    padding-top:calc(var(--nav-h) + 22px); padding-bottom:16px;
+  }
+  .hero .hdr{
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid var(--border); border-radius:16px; padding:18px;
+  }
+  h1.page-title{margin:0;font:800 clamp(26px,3.6vw,38px) Orbitron,monospace;letter-spacing:.5px}
+  .lead{color:var(--muted);margin:6px 0 0 0}
+
+  /* ===== Layout ===== */
+  .wrap{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:var(--max);margin:0 auto;padding:16px 22px 32px}
+  @media (max-width:1020px){.wrap{grid-template-columns:1fr}}
+  /* TOC */
+  aside{
+    position:sticky; top:calc(var(--nav-h) + 12px); align-self:start;
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border:1px solid var(--border); border-radius:12px; padding:14px;
+  }
+  .toc-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .toc-logo img{width:32px;height:32px;border-radius:8px;object-fit:cover;border:1px solid var(--border)}
+  nav ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  nav a{display:block;padding:8px 10px;border-radius:8px;color:var(--muted)}
+  nav a:hover{background:rgba(255,255,255,.06);color:#eaf6ff;text-decoration:none}
+
+  /* Main content */
+  main{display:grid;gap:22px}
+  section{
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border:1px solid var(--border); border-radius:12px; padding:18px;
+  }
+  h2{margin:0 0 10px;font:800 clamp(20px,2.4vw,28px) Orbitron,monospace}
+  h3{margin:8px 0 6px;color:var(--amber);font:700 clamp(16px,2vw,22px) Inter,Arial}
+  p{margin:8px 0}
+  ul{margin:6px 0 6px 18px}
+  .grid{display:grid;gap:10px}
+  .two{grid-template-columns:repeat(2,1fr)}
+  @media (max-width:820px){.two{grid-template-columns:1fr}}
+
+  /* Tokenomics Table */
+  table{width:100%;border-collapse:collapse;margin:10px 0;border:1px solid var(--border)}
+  th,td{padding:10px;border-top:1px solid var(--border);vertical-align:top;font-size:15px}
+  th{background:rgba(255,255,255,.05);text-align:left}
+  code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+  /* Footer */
+  footer{max-width:var(--max);margin:18px auto 36px;color:var(--muted);padding:0 22px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV (outside hero) ===== -->
+<nav class="site-nav" role="navigation" aria-label="Main Navigation">
+  <div class="container nav-row">
+    <div class="nav-left">
+      <a class="brand" href="../index.html" title="Back to $BURNA">
+        <img src="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" alt="Burna Boy logo" />
+        <h1>Burna Boy</h1>
+      </a>
+    </div>
+    <div class="nav-right">
+      <!-- Whitepaper is active page -->
+      <a class="link-pill active" href="index.html" aria-current="page" title="Whitepaper">
+        <!-- doc icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8h-6V2Z"/></svg>
+        Whitepaper
+      </a>
+      <a class="btn btn--amber" id="buyNow"
+         href="https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0"
+         target="_blank" rel="noopener">Get Burna Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container hdr">
+    <h1 class="page-title">$BURNA Token — Whitepaper</h1>
+    <p class="lead">A fan-first Web3 ecosystem aligning Afrobeat culture with on-chain ownership, utility, and rewards.</p>
+  </div>
+</header>
+
+<!-- ===== BODY (TOC + Content) ===== -->
+<div class="wrap">
+  <!-- TOC -->
+  <aside>
+    <div class="toc-logo">
+      <img src="https://i.ibb.co/pvhLTdRH/Burna-logo.jpg" alt="$BURNA">
+      <strong>$BURNA Whitepaper</strong>
+    </div>
+    <nav aria-label="Table of contents">
+      <ul>
+        <li><a href="#intro">1. Introduction</a></li>
+        <li><a href="#vision">2. Vision &amp; Mission</a></li>
+        <li><a href="#problem">3. The Problem</a></li>
+        <li><a href="#solution">4. The $BURNA Solution</a></li>
+        <li><a href="#tokenomics">5. Tokenomics</a></li>
+        <li><a href="#ecosystem">6. Ecosystem &amp; Use Cases</a></li>
+        <li><a href="#roadmap">7. Roadmap</a></li>
+        <li><a href="#governance">8. Governance</a></li>
+        <li><a href="#team">9. Team &amp; Community</a></li>
+        <li><a href="#legal">10. Legal Disclaimer</a></li>
+      </ul>
+    </nav>
+
+    <!-- Quick actions synced with the main site -->
+<div style="margin-top:12px;display:grid;gap:8px">
+  <a class="link-pill" id="wl_token" href="#" target="_blank" rel="noopener" title="Open on Etherscan (Token)">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+      <path d="M12 2a10 10 0 1 1 0 20h-2v-6h2a4 4 0 0 0 0-8h-2V2h2Z"/>
+    </svg>
+    Etherscan (Token)
+  </a>
+
+  <a class="link-pill" href="https://etherscan.io/address/0x00b8a9bb1dcab2cf2375284d70b39e6ef7d86aae"
+     target="_blank" rel="noopener" title="Contract address">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+      <path d="M3 12a9 9 0 1 1 18 0v6a2 2 0 0 1-2 2h-1v-8a1 1 0 0 0-2 0v8h-2v-6a1 1 0 0 0-2 0v6H8v-4a1 1 0 0 0-2 0v4H5a2 2 0 0 1-2-2v-6Z"/>
+    </svg>
+    Etherscan (Address)
+  </a>
+
+  <a class="link-pill" href="https://x.com/burnadapp?s=21"
+     target="_blank" rel="noopener" title="X / Twitter">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+      <path d="M18.9 3H22l-6.9 7.9L22.6 21h-6.3l-4.1-5.4L7.2 21H2l7.4-8.5L2 3h6.4l3.7 4.9L18.9 3Zm-2.2 16h1.8L8.5 5H6.7l10 14Z"/>
+    </svg>
+    X / Twitter
+  </a>
+
+  <a class="link-pill" href="https://www.youtube.com/@burnadapp"
+     target="_blank" rel="noopener" title="YouTube">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+      <path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
+    </svg>
+    YouTube
+  </a>
+
+  <a class="link-pill" href="https://t.me/burnatokencommunity"
+     target="_blank" rel="noopener" title="Telegram">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+      <path d="M9.04 13.51 8.7 18.6c.5 0 .7-.2 .96-.44l2.31-2.2 4.79 3.51c.88 .49 1.5 .23 1.74 -.81l3.16 -14.83c.28 -1.3 -.47 -1.81 -1.32 -1.49L2.1 9.36c-1.28 .5 -1.26 1.22 -.22 1.54l5.53 1.73L18.9 6.2c.6 -.37 1.16 -.17 .7 .2Z"/>
+    </svg>
+    Telegram
+  </a>
+
+  <a class="link-pill" href="mailto:support@burnaboytoken.xyz" title="Email Team">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+      <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"/>
+    </svg>
+    Email Team
+  </a>
+</div>
+
+  </aside>
+
+  <!-- Main content (edit freely; structure matches site style) -->
+  <main>
+    <section id="intro">
+      <h2>1. Introduction</h2>
+      <p>The <strong>$BURNA Token</strong> is a fan-first Web3 project designed to align music culture with on-chain ownership, utility, and rewards. It turns cultural engagement into tangible value through tokenized access, governance, and community funding.</p>
+    </section>
+
+    <section id="vision">
+      <h2>2. Vision &amp; Mission</h2>
+      <div class="grid two">
+        <div>
+          <h3>Vision</h3>
+          <p>Become the definitive cultural currency of Afrobeat and digital expression—where fans and creators co-own what they build.</p>
+          <h3>Mission</h3>
+          <ul>
+            <li>Empower fans via token-gated rewards &amp; DAO voting</li>
+            <li>Support creators with fair smart-contract royalties</li>
+            <li>Fuse entertainment and DeFi (staking, LP incentives)</li>
+            <li>Deliver a mobile-first, borderless Web3 stack</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Principles</h3>
+          <ul>
+            <li>Transparency (on-chain governance &amp; treasury)</li>
+            <li>Community first (airdrops, grants, open tools)</li>
+            <li>Utility over hype (access, perks, economics)</li>
+            <li>Global access (education, low-friction onboarding)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem">
+      <h2>3. The Problem</h2>
+      <ul>
+        <li>Fans don’t share in the value they create on Web2 platforms</li>
+        <li>Artists face middlemen and opaque revenue splits</li>
+        <li>No Afrobeat-native Web3 stack for NFTs/DAO/token economy</li>
+        <li>No formal community governance over culture &amp; funding</li>
+      </ul>
+    </section>
+
+    <section id="solution">
+      <h2>4. The $BURNA Solution</h2>
+      <div class="grid two">
+        <div>
+          <h3>Fan-Powered Ownership</h3>
+          <p>DAO voting, proposal influence, token-gated access &amp; rewards.</p>
+          <h3>Creator Economy</h3>
+          <p>Crowdfunded launches, on-chain royalties, and token-holder clubs.</p>
+        </div>
+        <div>
+          <h3>NFT + DeFi</h3>
+          <p>Utility NFTs (tickets, perks), staking APY and LP incentives.</p>
+          <h3>Global Access</h3>
+          <p>Mobile-first, low-gas routes, multilingual, and cross-chain path.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tokenomics">
+      <h2>5. Tokenomics</h2>
+      <p><strong>Total Supply:</strong> <span class="chip">10,000,000,000 $BURNA</span></p>
+      <p><strong>Contract:</strong> <span id="contractText" class="mono">0x00b8a9bb1dcab2cf2375284d70b39e6ef7d86aae</span></p>
+      <table>
+        <thead><tr><th>Allocation</th><th>Share</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Community &amp; Rewards</td><td>40%</td><td>Airdrops, staking, engagement programs</td></tr>
+          <tr><td>Public Sale</td><td>20%</td><td>Presale rounds + DEX liquidity</td></tr>
+          <tr><td>Development</td><td>15%</td><td>Infra, upgrades, ecosystem tools</td></tr>
+          <tr><td>Team &amp; Advisors</td><td>10%</td><td>12-month cliff + 24-month vesting</td></tr>
+          <tr><td>DAO Treasury</td><td>10%</td><td>Grants &amp; growth under governance</td></tr>
+          <tr><td>Marketing &amp; Partnerships</td><td>5%</td><td>Campaigns, listings, onboarding</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid two">
+        <div>
+          <h3>Utility</h3>
+          <ul>
+            <li>Governance (DAO proposals &amp; upgrades)</li>
+            <li>Access (token-gated content, events, NFTs)</li>
+            <li>Staking (rewards; liquidity incentives)</li>
+            <li>Payments (NFTs, merch, tickets)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Deflationary Mechanics</h3>
+          <ul>
+            <li>Programmatic burns (NFT redemptions, events)</li>
+            <li>Buybacks via treasury</li>
+            <li>Staking lockups</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ecosystem">
+      <h2>6. Ecosystem &amp; Use Cases</h2>
+      <div class="grid two">
+        <div>
+          <h3>Fans</h3>
+          <ul>
+            <li>Token-gated experiences and content</li>
+            <li>Voting rights, proposal influence</li>
+            <li>Earn via engagement/referrals</li>
+          </ul>
+          <h3>Creators</h3>
+          <ul>
+            <li>Mint NFTs with perks / royalties</li>
+            <li>Launch via DAO funding + community</li>
+            <li>Own direct revenue relationships</li>
+          </ul>
+        </div>
+        <div>
+          <h3>NFT Marketplace</h3>
+          <p>Collectibles with real perks; secondary market with on-chain splits.</p>
+          <h3>DAO Treasury</h3>
+          <p>Transparent grants for events, tooling, and growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2>7. Roadmap</h2>
+      <h3>Phase 1 — Launch &amp; Foundation</h3>
+      <ul>
+        <li>Token creation &amp; audit; website + whitepaper</li>
+        <li>Community airdrops; DEX listing; staking pool</li>
+      </ul>
+      <h3>Phase 2 — Ecosystem Growth</h3>
+      <ul>
+        <li>NFT Genesis; creator onboarding; governance live</li>
+        <li>Merch store beta; analytics dashboard</li>
+      </ul>
+      <h3>Phase 3 — Utility &amp; Integration</h3>
+      <ul>
+        <li>NFT ticketing, DeFi expansion, cross-chain path</li>
+        <li>Buyback &amp; Burn; creator toolkits</li>
+      </ul>
+    </section>
+
+    <section id="governance">
+      <h2>8. Governance</h2>
+      <p>DAO-led upgrades and funding with Snapshot + multisig treasury; community proposals set $BURNA’s direction.</p>
+    </section>
+
+    <section id="team">
+      <h2>9. Team &amp; Community</h2>
+      <p>Community-first contributors across blockchain, music, and design; ambassadors lead regional onboarding and events.</p>
+    </section>
+
+    <section id="legal">
+      <h2>10. Legal Disclaimer</h2>
+      <ul>
+        <li>Informational only; not legal/financial advice</li>
+        <li>Jurisdictional compliance is each user’s responsibility</li>
+        <li>Risks include volatility, contract risk, regulation, key loss</li>
+        <li>IP applies to brand/art; follow licenses/rights</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <small>© <span id="year"></span> Burna Boy • $BURNA — All rights reserved.</small>
+</footer>
+
+<script>
+(() => {
+  const ETH_ADDR_RE = /^0x[a-fA-F0-9]{40}$/;
+
+  // Contract source for this page — change ONCE here if needed
+  const contractEl = document.getElementById('contractText');
+  const wl_token   = document.getElementById('wl_token'); // sidebar token link
+  const footerY    = document.getElementById('year');
+
+  footerY.textContent = new Date().getFullYear();
+
+  function currentAddress(){
+    return (contractEl?.textContent || '').trim();
+  }
+
+  function wireTokenLink(a, valid, addr){
+    if (!a) return;
+    if (valid){
+      a.href = `https://etherscan.io/token/${addr}`;
+      a.setAttribute('aria-disabled','false');
+      a.title = 'Open on Etherscan (Token)';
+    } else {
+      a.href = '#'; a.setAttribute('aria-disabled','true'); a.title = 'Invalid contract address';
+    }
+  }
+
+  // Sync token link(s) from the visible contract
+  const addr = currentAddress();
+  const valid = ETH_ADDR_RE.test(addr);
+  wireTokenLink(wl_token, valid, addr);
+
+  // If the contract changes (dynamic), re-wire
+  if (window.MutationObserver && contractEl){
+    new MutationObserver(() => {
+      const a = currentAddress(); const v = ETH_ADDR_RE.test(a);
+      wireTokenLink(wl_token, v, a);
+    }).observe(contractEl, {characterData:true, childList:true, subtree:true});
+  }
+
+  // Ensure main buy CTA behavior mirrors site
+  const DEX = 'https://www.dextools.io/app/en/ether/pair-explorer/0x4dec3aaba65caf1c2ad64d411fc575a23297532fb714518659530bb012015db0';
+  document.querySelectorAll('#buyNow, a[href="'+DEX+'"]').forEach(a=>{
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener noreferrer');
+  });
+})();
+</script>
+</body>
+</html>
