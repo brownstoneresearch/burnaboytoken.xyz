@@ -1,7 +1,7 @@
 /* Burnaverse Protocol (BUV) — app.js */
 /* Static site helpers: copy contract, add token, active nav, quick link wiring */
 
-const CONFIG = {
+window.CONFIG = {
   baseUrl: "https://burnaverseprotocol.xyz",
   contract: "0xd14Ec02A022D2BD4117a0EEba966423253a48ad1",
   tokenName: "Burnaverse Protocol",
@@ -13,7 +13,7 @@ const CONFIG = {
   pancakeswap: "https://pancakeswap.finance/" // replace with exact swap URL when live
 };
 
-function toast(msg){
+window.toast = function toast(msg){
   const el = document.getElementById("toast");
   if(!el) return;
   el.textContent = msg;
@@ -24,11 +24,11 @@ function toast(msg){
 
 async function copyContract(){
   try{
-    await navigator.clipboard.writeText(CONFIG.contract);
+    await navigator.clipboard.writeText(window.CONFIG.contract);
     toast("Contract copied");
   }catch(e){
     const t = document.createElement("textarea");
-    t.value = CONFIG.contract;
+    t.value = window.CONFIG.contract;
     document.body.appendChild(t);
     t.select();
     document.execCommand("copy");
@@ -48,10 +48,10 @@ async function addTokenToWallet(){
       params:{
         type:"ERC20",
         options:{
-          address: CONFIG.contract,
-          symbol: CONFIG.tokenSymbol,
-          decimals: CONFIG.decimals,
-          image: CONFIG.tokenImage || undefined
+          address: window.CONFIG.contract,
+          symbol: window.CONFIG.tokenSymbol,
+          decimals: window.CONFIG.decimals,
+          image: window.CONFIG.tokenImage || undefined
         }
       }
     });
@@ -71,16 +71,16 @@ function setActiveNav(){
 }
 
 function fillGlobals(){
-  document.querySelectorAll("[data-contract]").forEach(el=>el.textContent = CONFIG.contract);
-  document.querySelectorAll("[data-symbol]").forEach(el=>el.textContent = CONFIG.tokenSymbol);
-  document.querySelectorAll("[data-name]").forEach(el=>el.textContent = CONFIG.tokenName);
+  document.querySelectorAll("[data-contract]").forEach(el=>el.textContent = window.CONFIG.contract);
+  document.querySelectorAll("[data-symbol]").forEach(el=>el.textContent = window.CONFIG.tokenSymbol);
+  document.querySelectorAll("[data-name]").forEach(el=>el.textContent = window.CONFIG.tokenName);
 
   document.querySelectorAll("[data-copy-contract]").forEach(btn=>btn.addEventListener("click", copyContract));
   document.querySelectorAll("[data-add-token]").forEach(btn=>btn.addEventListener("click", addTokenToWallet));
 
-  document.querySelectorAll("[data-link='bscscan-token']").forEach(a=>a.href = CONFIG.bscscanToken);
-  document.querySelectorAll("[data-link='bscscan-contract']").forEach(a=>a.href = CONFIG.bscscanContract);
-  document.querySelectorAll("[data-link='pancakeswap']").forEach(a=>a.href = CONFIG.pancakeswap);
+  document.querySelectorAll("[data-link='bscscan-token']").forEach(a=>a.href = window.CONFIG.bscscanToken);
+  document.querySelectorAll("[data-link='bscscan-contract']").forEach(a=>a.href = window.CONFIG.bscscanContract);
+  document.querySelectorAll("[data-link='pancakeswap']").forEach(a=>a.href = window.CONFIG.pancakeswap);
 
   // Social links (placeholders unless you set them)
   const socials = {
