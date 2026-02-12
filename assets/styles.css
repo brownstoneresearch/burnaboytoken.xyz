@@ -391,3 +391,93 @@ textarea{min-height:110px; resize:vertical}
   object-fit:cover;
 }
 html[data-theme="light"] .logoImg{border-color:rgba(11,16,32,.14);}
+
+
+/* === Masterpiece nav: responsive, neat on all devices === */
+header{position:sticky; top:0; z-index:60;}
+.nav{position:relative;}
+.navRight{display:flex;align-items:center;gap:10px;margin-left:auto}
+
+/* Desktop links */
+.links{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-items:center;
+}
+@media (min-width: 981px){
+  .links{
+    flex-wrap:nowrap;
+    overflow:auto hidden;
+    scrollbar-width:none;
+  }
+  .links::-webkit-scrollbar{display:none}
+}
+
+/* Mobile toggle button */
+.navToggle{
+  display:none;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  cursor:pointer;
+  line-height:1;
+  align-items:center;
+  gap:8px;
+}
+.navToggle svg{width:18px;height:18px;display:block}
+
+/* Mobile drawer */
+@media (max-width: 980px){
+  .nav{gap:10px}
+  .navToggle{display:inline-flex}
+  .links{
+    position:fixed;
+    top:72px;
+    left:12px;
+    right:12px;
+    max-height: calc(100vh - 98px);
+    overflow:auto;
+    padding:12px;
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow: var(--shadow);
+    backdrop-filter: var(--glass);
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .links.open{display:flex; animation: pop .18s var(--ease) both}
+  .pill, .btn.ghost{justify-content:center;width:100%}
+  .btn.ghost{padding:12px 14px}
+}
+
+/* Light mode header contrast */
+html[data-theme="light"] header{
+  background:linear-gradient(to bottom, rgba(247,248,255,.92), rgba(247,248,255,.55));
+  border-bottom:1px solid rgba(11,16,32,.10);
+}
+html[data-theme="light"] .navToggle{
+  border-color: rgba(11,16,32,.14);
+  background: rgba(11,16,32,.04);
+}
+
+/* Brand spacing on tiny screens */
+.brand{min-width: 220px}
+@media (max-width: 420px){
+  .brand{min-width: 0}
+  .brand h1{font-size:13px}
+  .brand p{font-size:11px}
+}
+
+
+/* Section header actions */
+.sectionTitle{align-items:flex-start}
+.sectionActions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+@media (max-width: 980px){
+  .sectionTitle{flex-direction:column; align-items:flex-start}
+}

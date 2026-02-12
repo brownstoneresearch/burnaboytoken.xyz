@@ -42,7 +42,7 @@ function initPageTransitions(){
   document.querySelectorAll("a[href]").forEach(a=>{
     const href = a.getAttribute("href");
     if(!href) return;
-    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("#");
+    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("#") || href.startsWith("assets/");
     if(isExternal) return;
     a.addEventListener("click", (e)=>{
       if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -164,8 +164,32 @@ function initModal(){
     });
   }
 }
+
+function initNavDrawer(){
+  const btn = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+  if(!btn || !links) return;
+
+  const close = ()=> links.classList.remove("open");
+  const toggle = ()=> links.classList.toggle("open");
+
+  btn.addEventListener("click", (e)=>{ e.stopPropagation(); toggle(); });
+
+  links.querySelectorAll("a").forEach(a=>a.addEventListener("click", close));
+
+  document.addEventListener("click",(e)=>{
+    if(links.classList.contains("open")){
+      if(!links.contains(e.target) && !btn.contains(e.target)) close();
+    }
+  });
+
+  document.addEventListener("keydown",(e)=>{ if(e.key === "Escape") close(); });
+}
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
   initTheme();
+  initNavDrawer();
   initThemeToggle();
   initPageTransitions();
   animateCounters();
