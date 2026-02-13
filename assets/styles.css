@@ -812,3 +812,15 @@ body.nav-locked #navOverlay{pointer-events:auto;}
   color: rgba(238,242,255,.96) !important;
   box-shadow: 0 10px 24px rgba(124,92,255,.12);
 }
+
+
+/* === Drawer stability improvements (v6) === */
+#navLinks.links{
+  height: 100dvh !important; /* dynamic viewport for mobile address bar */
+  padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+}
+.navOverlay{height:100dvh;}
+body.nav-locked{
+  /* allow vertical gestures to be handled by drawer */
+  touch-action: pan-y;
+}

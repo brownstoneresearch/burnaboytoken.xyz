@@ -1,3 +1,12 @@
+
+function setInert(el, inert){
+  if(!el) return;
+  try{
+    if(inert) el.setAttribute("inert","");
+    else el.removeAttribute("inert");
+  }catch(_){}
+}
+
 async function fetchDexScreener(tokenAddress){
   const url = `https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`;
   const r = await fetch(url, {cache:"no-store"});
@@ -185,6 +194,8 @@ function initNavDrawer(){
   const links = document.getElementById("navLinks");
   const overlay = document.getElementById("navOverlay");
   const closeBtn = document.getElementById("drawerClose");
+  const main = document.querySelector("main");
+  const header = document.querySelector("header");
   if(!btn || !links) return;
 
   btn.setAttribute("aria-expanded","false");
@@ -225,6 +236,9 @@ function initNavDrawer(){
     overlay && overlay.classList.add("show");
     btn.setAttribute("aria-expanded","true");
     lockBody();
+    if(main) main.setAttribute("aria-hidden","true");
+    setInert(main, true);
+
     // focus first actionable item inside drawer
     const first = links.querySelector(focusableSel);
     if(first) setTimeout(()=>first.focus(), 30);
@@ -235,6 +249,9 @@ function initNavDrawer(){
     overlay && overlay.classList.remove("show");
     btn.setAttribute("aria-expanded","false");
     unlockBody();
+    if(main) main.removeAttribute("aria-hidden");
+    setInert(main, false);
+
     if(lastFocused && lastFocused.focus) setTimeout(()=>lastFocused.focus(), 30);
   };
 
