@@ -530,6 +530,14 @@ function initSidebar(){
   document.querySelectorAll(".sidebar a[href]").forEach(a=>{
     a.addEventListener("click", ()=> close());
   });
+
+  // v9: prevent stuck scroll if user opens sidebar on mobile then rotates/resizes to desktop
+  window.addEventListener("resize", ()=>{
+    if(window.innerWidth > 980){
+      document.body.classList.remove("sidebar-open");
+    }
+  });
+
 }
 
 
