@@ -514,11 +514,7 @@ function initSidebar(){
   const body = document.body;
   const mobileBtn = document.getElementById("navToggle");
   const overlay = document.getElementById("sidebarOverlay");
-  const collapseBtn = document.getElementById("sidebarToggle");
-
-  // restore collapse preference (desktop)
-  const saved = localStorage.getItem("bv_sidebar");
-  if(saved === "collapsed") body.classList.add("sidebar-collapsed");
+  const closeBtn = document.getElementById("sidebarCloseMobile");
 
   const open = ()=> body.classList.add("sidebar-open");
   const close = ()=> body.classList.remove("sidebar-open");
@@ -526,17 +522,9 @@ function initSidebar(){
 
   mobileBtn && mobileBtn.addEventListener("click", (e)=>{ e.preventDefault(); toggleMobile(); });
   overlay && overlay.addEventListener("click", close);
+  closeBtn && closeBtn.addEventListener("click", close);
 
-  document.addEventListener("keydown",(e)=>{
-    if(e.key === "Escape") close();
-  });
-
-  // collapse toggle (desktop)
-  collapseBtn && collapseBtn.addEventListener("click", (e)=>{
-    e.preventDefault();
-    body.classList.toggle("sidebar-collapsed");
-    localStorage.setItem("bv_sidebar", body.classList.contains("sidebar-collapsed") ? "collapsed" : "expanded");
-  });
+  document.addEventListener("keydown",(e)=>{ if(e.key === "Escape") close(); });
 
   // close sidebar on navigation (mobile)
   document.querySelectorAll(".sidebar a[href]").forEach(a=>{
