@@ -127,6 +127,20 @@ async function initLiveStats(){
     setStatus("Live market data unavailable.", "bad");
   }
 }
+
+function closeDrawerIfOpen(){
+  const links = document.getElementById("navLinks");
+  const overlay = document.getElementById("navOverlay");
+  const btn = document.getElementById("navToggle");
+  if(links && links.classList.contains("open")){
+    links.classList.remove("open");
+    overlay && overlay.classList.remove("show");
+    btn && btn.setAttribute("aria-expanded","false");
+    document.body.classList.remove("nav-locked");
+  }
+}
+
+
 function initModal(){
   const back = document.getElementById("modalBack");
   if(!back) return;
@@ -137,6 +151,7 @@ function initModal(){
 
   document.querySelectorAll("[data-open-modal]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
+      closeDrawerIfOpen();
       back.classList.add("show");
       const first = back.querySelector("input,textarea,select,button");
       if(first) setTimeout(()=>first.focus(), 50);
@@ -172,26 +187,79 @@ function initNavDrawer(){
   const closeBtn = document.getElementById("drawerClose");
   if(!btn || !links) return;
 
+  btn.setAttribute("aria-expanded","false");
+  btn.setAttribute("aria-controls","navLinks");
+  links.setAttribute("role","dialog");
+  links.setAttribute("aria-modal","true");
+
+  const focusableSel = 'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
+  let lastFocused = null;
+
+  let __scrollY = 0;
+  const lockBody = () => {
+    __scrollY = window.scrollY || 0;
+    document.body.classList.add("nav-locked");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${__scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  };
+    const unlockBody = () => {
+    document.body.classList.remove("nav-locked");
+    const top = document.body.style.top;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    const y = top ? Math.abs(parseInt(top, 10)) : __scrollY;
+    window.scrollTo(0, y || 0);
+  };
+
+  const open = ()=> {
+    lastFocused = document.activeElement;
+    links.classList.add("open");
+    overlay && overlay.classList.add("show");
+    btn.setAttribute("aria-expanded","true");
+    lockBody();
+    // focus first actionable item inside drawer
+    const first = links.querySelector(focusableSel);
+    if(first) setTimeout(()=>first.focus(), 30);
+  };
+
   const close = ()=> {
     links.classList.remove("open");
     overlay && overlay.classList.remove("show");
+    btn.setAttribute("aria-expanded","false");
+    unlockBody();
+    if(lastFocused && lastFocused.focus) setTimeout(()=>lastFocused.focus(), 30);
   };
-  const open = ()=> {
-    links.classList.add("open");
-    overlay && overlay.classList.add("show");
-  };
+
   const toggle = ()=> (links.classList.contains("open") ? close() : open());
 
-  btn.addEventListener("click", (e)=>{ e.stopPropagation(); toggle(); });
-  closeBtn && closeBtn.addEventListener("click", close);
+  btn.addEventListener("click", (e)=>{ e.preventDefault(); e.stopPropagation(); toggle(); });
+  closeBtn && closeBtn.addEventListener("click", (e)=>{ e.preventDefault(); close(); });
   overlay && overlay.addEventListener("click", close);
 
-  // close on link click
-  links.querySelectorAll("a").forEach(a=>{
-    a.addEventListener("click", ()=> close());
+  // close on internal link click
+  links.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=> close()));
+
+  // Focus trap when drawer open
+  document.addEventListener("keydown", (e)=>{
+    if(!links.classList.contains("open")) return;
+    if(e.key === "Escape"){ e.preventDefault(); close(); return; }
+    if(e.key !== "Tab") return;
+    const focusables = Array.from(links.querySelectorAll(focusableSel)).filter(el=>!el.hasAttribute("disabled"));
+    if(!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
   });
 
-  document.addEventListener("keydown",(e)=>{ if(e.key === "Escape") close(); });
+  // Prevent wheel/scroll from affecting body when open (some mobile browsers)
+  links.addEventListener("wheel", (e)=>{ if(links.classList.contains("open")) e.stopPropagation(); }, {passive:true});
 }
 
 
@@ -358,6 +426,41 @@ async function updateWalletUI(){
 }
 
 
+
+function initLiveStatsAuto(){
+  const box = document.querySelector("[data-live-stats]");
+  if(!box) return;
+
+  const stamp = document.createElement("span");
+  stamp.className = "chip";
+  stamp.style.marginLeft = "auto";
+  stamp.textContent = "Updated: —";
+  const row = box.querySelector(".chipRow");
+  if(row) row.appendChild(stamp);
+
+  let timer = null;
+  const run = async ()=>{
+    try{
+      await initLiveStats();
+      const d = new Date();
+      stamp.textContent = "Updated: " + d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+    }catch(_){}
+  };
+
+  const io = new IntersectionObserver((entries)=>{
+    const vis = entries.some(e=>e.isIntersecting);
+    if(vis){
+      run();
+      timer = timer || setInterval(run, 45000);
+    }else{
+      if(timer){ clearInterval(timer); timer = null; }
+    }
+  }, {threshold: 0.2});
+
+  io.observe(box);
+}
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
   initTheme();
   initNavDrawer();
@@ -367,5 +470,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   initPageTransitions();
   animateCounters();
   initLiveStats();
+  initLiveStatsAuto();
   initModal();
 });
