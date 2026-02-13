@@ -218,6 +218,8 @@ function initNavDrawer(){
   };
 
   const open = ()=> {
+    // reset drawer scroll for consistent navigation
+    links.scrollTop = 0;
     lastFocused = document.activeElement;
     links.classList.add("open");
     overlay && overlay.classList.add("show");
@@ -461,9 +463,39 @@ function initLiveStatsAuto(){
 }
 
 
+
+function initDrawerAccordion(){
+  const sections = Array.from(document.querySelectorAll("[data-accordion]"));
+  if(!sections.length) return;
+
+  const openSection = (sec)=>{
+    sections.forEach(s=>{ if(s!==sec) s.classList.remove("open"); });
+    sec.classList.add("open");
+  };
+
+  sections.forEach(sec=>{
+    const head = sec.querySelector("[data-accordion-head]");
+    if(!head) return;
+    head.addEventListener("click", ()=>{
+      const isOpen = sec.classList.contains("open");
+      if(isOpen) sec.classList.remove("open");
+      else openSection(sec);
+    });
+  });
+
+  // Auto-open section that contains current active nav
+  const active = document.querySelector("#navLinks .pill.active");
+  if(active){
+    const parent = active.closest("[data-accordion]");
+    if(parent) parent.classList.add("open");
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
   initTheme();
   initNavDrawer();
+  initDrawerAccordion();
   initWalletButton();
   updateWalletUI();
   initThemeToggle();

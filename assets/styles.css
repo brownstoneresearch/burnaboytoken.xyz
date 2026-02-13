@@ -662,7 +662,7 @@ body.nav-locked #navToggle{pointer-events:auto;}
 body.nav-locked #navOverlay{pointer-events:auto;}
 
 #navLinks.links{
-  background: #070a12 !important; /* solid dark */
+  background: #0b1020 !important; /* solid dark */
   color: var(--text) !important;
 }
 #navLinks .pill, #navLinks .btn.ghost{
@@ -715,4 +715,100 @@ body.nav-locked{
 }
 .navOverlay{
   touch-action: none;
+}
+
+
+/* === Drawer bright polish (v4) === */
+#navLinks.links{
+  background:#0b1020 !important; /* brighter dark */
+  color: var(--text) !important;
+  border-right: 1px solid rgba(255,255,255,.16) !important;
+}
+#navLinks .drawerHead{
+  background: rgba(255,255,255,.03);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 12px 10px 12px;
+}
+#navLinks .drawerGroup .pill,
+#navLinks .drawerGroup .btn.ghost{
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.18);
+  color: rgba(238,242,255,.95);
+}
+#navLinks .drawerGroup .pill:hover,
+#navLinks .drawerGroup .btn.ghost:hover{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.24);
+}
+#navLinks .drawerMeta{
+  background: rgba(255,255,255,.02);
+}
+#navLinks .drawerClose{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.20);
+}
+#navLinks .drawerClose:hover{background: rgba(255,255,255,.14);}
+
+/* Ensure only drawer scrolls while open (101% usability) */
+body.nav-locked{overflow:hidden !important;}
+body.nav-locked main{pointer-events:none;}
+body.nav-locked header{pointer-events:none;}
+body.nav-locked #navLinks{pointer-events:auto;}
+body.nav-locked #navOverlay{pointer-events:auto;}
+#navLinks.links{
+  height:100vh !important;
+  overflow-y:auto !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+
+/* Overlay tuned */
+.navOverlay{background: rgba(0,0,0,.70) !important;}
+
+
+/* === Drawer accordion (v5) === */
+.drawerSection{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  border-radius:18px;
+  overflow:hidden;
+}
+.drawerSectionHead{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px;
+  border:none;
+  cursor:pointer;
+  background: rgba(255,255,255,.04);
+  color: rgba(238,242,255,.92);
+  font-weight:800;
+  font-size:13px;
+}
+.drawerSectionHead:hover{background: rgba(255,255,255,.06);}
+.drawerChevron{
+  width:18px;height:18px;flex:0 0 auto;
+  transition: transform .18s var(--ease);
+  opacity:.9;
+}
+.drawerSection.open .drawerChevron{transform: rotate(180deg);}
+.drawerSectionBody{
+  display:none;
+  padding:10px 10px 12px;
+  gap:8px;
+  flex-direction:column;
+}
+.drawerSection.open .drawerSectionBody{display:flex;}
+.drawerSectionBody .pill{background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16);}
+
+#navLinks .pill.active{
+  background: linear-gradient(135deg, rgba(124,92,255,.22), rgba(33,209,159,.14)) !important;
+  border-color: rgba(124,92,255,.40) !important;
+  color: rgba(238,242,255,.96) !important;
+  box-shadow: 0 10px 24px rgba(124,92,255,.12);
 }
