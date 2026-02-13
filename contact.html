@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <title>Contact — Burnaverse Protocol (BUV)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <meta name="description" content="Contact and partnership info for Burnaverse Protocol (BUV)." />
+  <meta property="og:title" content="Contact — Burnaverse Protocol (BUV)" />
+  <meta property="og:description" content="Contact and partnership info for Burnaverse Protocol (BUV)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://burnaverseprotocol.xyz/" />
+  <meta property="og:image" content="https://burnaverseprotocol.xyz/assets/og.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
+</head>
+<body>
+  <div id="sidebarOverlay" class="sidebarOverlay" aria-hidden="true"></div>
+  <div class="pageShell">
+    <aside class="sidebar" aria-label="Sidebar navigation">
+
+<div class="sidebarInner">
+  <div class="sidebarTop">
+    <div class="sidebarBrand">
+      <img class="logoImg" src="assets/logo.png" alt="Burnaverse logo" />
+      <div class="title">
+        <b>Burnaverse Protocol (BUV)</b>
+        <span>BNB Chain • Web3 + Impact Hybrid</span>
+      </div>
+    </div>
+    <button id="sidebarToggle" class="sidebarToggle" type="button" title="Collapse sidebar" aria-label="Collapse sidebar">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M14 7l-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="sidebarScroll">
+    <div class="sidebarSection open" data-accordion>
+      <button class="sidebarSectionHead" type="button" data-accordion-head>
+        Core
+        <svg class="sidebarChevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="sidebarSectionBody">
+        <a class="sidebarLink pill" data-nav href="index.html">Home</a>
+        <a class="sidebarLink pill" data-nav href="tokenomics.html">Tokenomics</a>
+        <a class="sidebarLink pill" data-nav href="impact.html">Impact</a>
+        <a class="sidebarLink pill" data-nav href="roadmap.html">Roadmap</a>
+        <a class="sidebarLink pill" data-nav href="faq.html">FAQ</a>
+        <a class="sidebarLink pill" data-nav href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="sidebarSection" data-accordion>
+      <button class="sidebarSectionHead" type="button" data-accordion-head>
+        Ecosystem
+        <svg class="sidebarChevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="sidebarSectionBody">
+        <a class="sidebarLink pill" data-nav href="entertainment.html">Entertainment</a>
+        <a class="sidebarLink pill" data-nav href="sports.html">Sports</a>
+        <a class="sidebarLink pill" data-nav href="academics.html">Academics</a>
+        <a class="sidebarLink pill" data-nav href="community.html">Community</a>
+        <a class="sidebarLink pill" data-nav href="civic.html">Civic</a>
+      </div>
+    </div>
+
+    <div class="sidebarSection" data-accordion>
+      <button class="sidebarSectionHead" type="button" data-accordion-head>
+        Resources
+        <svg class="sidebarChevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="sidebarSectionBody">
+        <a class="sidebarLink pill" href="assets/whitepaper.pdf" download>Whitepaper (PDF)</a>
+        <a class="sidebarLink pill" data-link="pancakeswap" target="_blank" rel="noreferrer">Invest (PancakeSwap)</a>
+        <a class="sidebarLink pill" data-link="bscscan-contract" target="_blank" rel="noreferrer">BscScan</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebarBottom">
+    <div class="walletMeta">
+      <span id="walletStatusChip" class="walletChip bad">Network: —</span>
+      <span class="walletChip"><b id="walletBalance">—</b></span>
+    </div>
+    <button id="connectWallet" class="btn wallet" type="button">Connect Wallet</button>
+    <button class="sidebarTheme pill" type="button" data-theme-toggle title="Toggle theme">Theme: <span id="themeToggleText">Dark</span></button>
+  </div>
+</div>
+
+    </aside>
+    <div class="mainShell">
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="Home">
+        <img class="logoImg" src="assets/logo.png" alt="Burnaverse logo" />
+        <div>
+          <h1><span data-name>Burnaverse Protocol</span> <span style="opacity:.8">(<span data-symbol>BUV</span>)</span></h1>
+          <p>Contact</p>
+        </div>
+      </a>
+      <div class="navRight">
+        <button id="navToggle" class="navToggle" type="button" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Menu
+        </button>
+        
+  </div>
+  <button id="drawerClose" class="drawerClose" type="button" aria-label="Close menu">Close</button>
+</div>
+
+</div>
+
+  <div class="drawerSection" data-accordion>
+    <button class="drawerSectionHead" type="button" data-accordion-head>
+      Ecosystem
+      <svg class="drawerChevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="drawerSectionBody">
+      <a class="pill" data-nav href="entertainment.html">Entertainment</a>
+      <a class="pill" data-nav href="sports.html">Sports</a>
+      <a class="pill" data-nav href="academics.html">Academics</a>
+      <a class="pill" data-nav href="community.html">Community</a>
+      <a class="pill" data-nav href="civic.html">Civic</a>
+    </div>
+  </div>
+
+  <div class="drawerSection" data-accordion>
+    <button class="drawerSectionHead" type="button" data-accordion-head>
+      Resources
+      <svg class="drawerChevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="drawerSectionBody">
+      <a class="pill" href="assets/whitepaper.pdf" download>Whitepaper (PDF)</a>
+      <a class="pill" data-link="pancakeswap" target="_blank" rel="noreferrer">Invest (Buy on PancakeSwap)</a>
+      <a class="pill" data-link="bscscan-contract" target="_blank" rel="noreferrer">BscScan</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="sectionTitle">
+      <div class="sectionActions">
+        <button class="btn" type="button" data-open-modal>Apply / Partner</button>
+      </div>
+
+      <h3>Contact</h3>
+      <p>Partnerships, community, and media.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card pad col8">
+        <p style="margin:0;color:var(--muted);line-height:1.75">
+          For partnerships, programs, and community onboarding, reach us via:
+        </p>
+
+        <div class="hr"></div>
+
+        <ul class="list">
+          <li class="li"><div class="icon">✉️</div><div><b>Email</b><span><a data-social="email">contact@burnaverseprotocol.xyz</a></span></div></li>
+          <li class="li"><div class="icon">💬</div><div><b>Telegram</b><span><a data-social="telegram">Join the community channel</a></span></div></li>
+          <li class="li"><div class="icon">𝕏</div><div><b>X</b><span><a data-social="x">Follow announcements</a></span></div></li>
+          <li class="li"><div class="icon">📝</div><div><b>Medium</b><span><a data-social="medium">Read updates</a></span></div></li>
+        </ul>
+
+        <div class="hr"></div>
+
+        <div class="note">
+          <b style="color:rgba(232,238,252,.92)">Partner pack suggestion:</b>
+          publish a one-page PDF with KPIs, budget ranges, deliverables templates, and reporting cadence.
+        </div>
+      </div>
+
+      <div class="card pad col4">
+        <h3 style="margin:0 0 10px">Quick Verification</h3>
+        <div class="addrRow">
+          <div class="addr" data-contract>0xd14Ec02A022D2BD4117a0EEba966423253a48ad1</div>
+          <button class="mini" type="button" data-copy-contract>Copy</button>
+        </div>
+
+        <div class="hr"></div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="mini good" data-link="bscscan-token" target="_blank" rel="noreferrer">BscScan Token</a>
+          <button class="mini" type="button" data-add-token>Add to MetaMask</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footRow">
+        <div class="left">
+          <b style="color:rgba(232,238,252,.92)"><span data-name>Burnaverse Protocol</span> (<span data-symbol>BUV</span>)</b><br/>
+          Contract: <span style="font-family:var(--mono)" data-contract></span>
+          <div class="hr"></div>
+          © <span id="year"></span> Burnaverse Protocol. All rights reserved.
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+          <a class="pill" href="tokenomics.html">Tokenomics</a>
+          <a class="pill" href="impact.html">Impact</a>
+          <a class="pill" href="entertainment.html">Entertainment</a>
+          <a class="pill" href="sports.html">Sports</a>
+          <a class="pill" href="academics.html">Academics</a>
+          <a class="pill" href="community.html">Community</a>
+          <a class="pill" href="civic.html">Civic</a>
+          <a class="pill" href="roadmap.html">Roadmap</a>
+          <a class="pill" href="faq.html">FAQ</a>
+          <a class="pill" href="contact.html">Contact</a>
+          <a class="pill" href="assets/whitepaper.pdf" download>Whitepaper</a>
+          <a class="pill" data-link="bscscan-contract" target="_blank" rel="noreferrer">BscScan</a>
+        </div>
+      </div>
+      <div class="note" style="margin-top:14px">
+        Disclaimer: Crypto assets are high risk. Nothing here is financial advice. Do your own research.
+      </div>
+    </footer>
+
+  </main>
+
+  
+  <div id="modalBack" class="modalBack" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Apply">
+      <div class="modalHead">
+        <h3>Apply for Burnaverse Support</h3>
+        <button class="mini" type="button" data-modal-close>Close</button>
+      </div>
+      <div class="modalBody">
+        <form id="applyForm">
+          <div class="row">
+            <div class="field">
+              <label for="name">Name *</label>
+              <input class="input" id="name" name="name" placeholder="Full name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input class="input" id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="category">Category *</label>
+              <select class="input" id="category" name="category" required>
+                <option value="">Select…</option>
+                <option>Entertainment</option>
+                <option>Sports</option>
+                <option>Academics</option>
+                <option>Community</option>
+                <option>Civic</option>
+                <option>Partnership</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="location">Location</label>
+              <input class="input" id="location" name="location" placeholder="City, State, Country" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Proposal *</label>
+            <textarea id="message" name="message" placeholder="Explain what you’re building, what you need, and what success looks like." required></textarea>
+            <div class="helper">Submissions are stored locally in your browser (no backend yet). Add a server later to receive applications.</div>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+            <button class="btn ghost" type="button" data-modal-close>Cancel</button>
+            <button class="btn" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/app.js"></script>
+  <script src="assets/ui.js"></script>
+    </div>
+  </div>
+</body>
+</html>
